@@ -6,6 +6,7 @@
 
 <body>
 <script>
+    //http://localhost/websocket/client.php?user_id=2&room_id=22&message=%27hihi%27
     var user_id = <?php echo $_GET['user_id'];?> ;
     var room_id = <?php echo $_GET['room_id'];?> ;
     var message = <?php echo $_GET['message'];?> ;
