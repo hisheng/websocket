@@ -11,8 +11,8 @@
     var message = <?php echo $_GET['message'];?> ;
 
 //var ws = new WebSocket('ws://192.168.1.17:7703');
-//var ws = new WebSocket('ws://118.178.233.217:7703');
-    var ws = new WebSocket('ws://121.196.237.158:7703');
+//var ws = new WebSocket('ws://websocket.com:7703');
+    var ws = new WebSocket('ws://websocket.com:7703');
         ws.onopen = function(){
         //login
         var api = {
