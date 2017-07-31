@@ -5,7 +5,7 @@
  * Date: 2017/7/31
  * Time: 10:00
  */
-
+require_once './../vendor/autoload.php';
 
 if(count($argv) > 1){
     $parm = $argv[1];
@@ -14,37 +14,16 @@ if(count($argv) > 1){
 }
 
 define('MASTER_PID_FILE',__DIR__.'/server.pid');
+$swooleServer = new \Websocket\Server(MASTER_PID_FILE);
 
 switch ($parm){
     case 'start':
-        $status = checkServer();
-        if($status){
-            echo 'WARNING swSocket_bind: bind(0.0.0.0:7703) failed. Error: Address already in use [98]';
-            echo "\n";
-            echo 'Usage:php swoole.php start|stop|restart';
-            echo "\n";
-            return ;
-        }
-        freshRedis();
+        $swooleServer->start();
         break;
     case 'stop':
-        stopServer();
-        clearServerPid();
+       $swooleServer->stop();
         return;
-        //$server->shutdown();
-        break;
-    case 'restart':
-        if(!stopServer()){
-            return 'stop server error';
-        }
-        if(clearServerPid()){
-            freshRedis();
-        }else{
-            echo 'error';
-            return;
-        }
-        //$server->reload();
-        break;
+        break; 
     case 'help':
         //stopServer();
         //$server->reload();
@@ -52,35 +31,7 @@ switch ($parm){
         return;
         break;
     default:
-        freshRedis();
+    
 }
 
-function getPid(){
-    if(is_file(MASTER_PID_FILE)){
-        return file_get_contents(MASTER_PID_FILE);
-    }
-    return false;
-}
-
-function stopServer(){
-    $pid = getPid();
-    if($pid){
-        return posix_kill(intval($pid),15);
-    }
-    return false;
-}
-
-function clearServerPid(){
-    if(checkServer()){
-        return unlink(MASTER_PID_FILE);
-    }
-    return true;
-}
-function checkServer(){
-    $pid = getPid();
-    if($pid){
-        return 1;
-    }
-    return 0;
-}
 
