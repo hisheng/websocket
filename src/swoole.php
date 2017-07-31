@@ -5,7 +5,7 @@
  * Date: 2017/7/31
  * Time: 10:00
  */
-require_once './../vendor/autoload.php';
+require './../vendor/autoload.php';
 
 if(count($argv) > 1){
     $parm = $argv[1];
@@ -23,7 +23,7 @@ switch ($parm){
     case 'stop':
        $swooleServer->stop();
         return;
-        break; 
+        break;
     case 'help':
         //stopServer();
         //$server->reload();

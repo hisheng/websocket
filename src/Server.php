@@ -28,18 +28,18 @@ class Server
     {
         if(! $this->pid->get())
         {
-            $server = new swoole_websocket_server("0.0.0.0", 10703);
+            $server = new  \swoole_websocket_server("0.0.0.0", 10703);
             $server->set(array(
                 'log_file' => self::$log_file,
                 'pid_file' =>self::$master_pid_file,
                 'daemonize' => 1
             ));
-            $server->on('open', function (swoole_websocket_server $server, $request) {
+            $server->on('open', function (\swoole_websocket_server $server, $request) {
                 echo "server: handshake success with fd{$request->fd}\n";
                 //$server->push($request->fd,json('open ok'));
             });
             
-            $server->on('message', function (swoole_websocket_server $server, $frame) {
+            $server->on('message', function (\swoole_websocket_server $server, $frame) {
                 echo "receive from {$frame->fd}:{$frame->data},opcode:{$frame->opcode},fin:{$frame->finish}\n";
             });
     
