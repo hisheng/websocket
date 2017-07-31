@@ -43,7 +43,8 @@ class Server
                 echo "receive from {$frame->fd}:{$frame->data},opcode:{$frame->opcode},fin:{$frame->finish}\n";
                 $apiParms = json_decode($frame->data,true);
                 if($apiParms){
-                
+                    $router = new Router();
+                    $router->urlParse($apiParms);
                 }
             });
     
