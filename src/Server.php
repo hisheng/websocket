@@ -41,6 +41,10 @@ class Server
             
             $server->on('message', function (\swoole_websocket_server $server, $frame) {
                 echo "receive from {$frame->fd}:{$frame->data},opcode:{$frame->opcode},fin:{$frame->finish}\n";
+                $apiParms = json_decode($frame->data,true);
+                if($apiParms){
+                
+                }
             });
     
             $server->on('close', function ($ser, $fd) {

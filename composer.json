@@ -8,6 +8,9 @@
     ],
     "require": {},
     "autoload": {
-        "psr-4": {"Websocket\\": "src/"}
+        "psr-4": {
+            "Websocket\\": "src/",
+            "App\\": "app/"
+        }
     }
 }
