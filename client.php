@@ -13,7 +13,7 @@
 
 //var ws = new WebSocket('ws://192.168.1.17:7703');
 //var ws = new WebSocket('ws://websocket.com:7703');
-    var ws = new WebSocket('ws://websocket.com:7703');
+    var ws = new WebSocket('ws://websocket.com:10703');
         ws.onopen = function(){
         //login
         var api = {
