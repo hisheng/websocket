@@ -5,7 +5,7 @@
  * Date: 2017/7/31
  * Time: 14:50
  */
-namespace App\Controller;
+namespace App\Controllers;
 
 class LoginController
 {

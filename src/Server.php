@@ -5,7 +5,7 @@
  * Date: 2017/7/31
  * Time: 10:08
  */
-namespace Websocket; 
+namespace Websocket;
 
 class Server
 {

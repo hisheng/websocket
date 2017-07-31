@@ -46,7 +46,7 @@ class Router
         
         //4 执行类中的 某个方法
         
-        $className =  'App\Controllers\\'.$this->controller.'Controller';
+        $className =  '\\App\Controllers\\'.$this->controller.'Controller';
         
         //检查这个类是否存在
 //        if (class_exists($className)) {
@@ -64,9 +64,11 @@ class Router
         //检查这个类的方法是否存在
         if(method_exists($className,$this->action.'Action')){
             //$class->{$this->action.'Action'}();
+            $classReflection = new ReflectionClass($className);
+            $class = $classReflection->newInstance();
             call_user_func_array(
             # 调用内部function
-                array($className,$this->action.'Action'),
+                array($class,$this->action.'Action'),
                 # 传递参数
                 [
                     'parms'=>self::$parms
