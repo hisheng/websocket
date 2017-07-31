@@ -19,8 +19,9 @@
         var api = {
             "api":"login",
             "parms":{
-            "user_id":user_id,
-            'room_id':room_id,
+                "user_id":user_id,
+                'room_id':room_id,
+                'camgirl_id':2
         }
     }
 
@@ -75,6 +76,17 @@
                 'user_id':user_id,
                 'room_id':room_id,
                 'message':message
+            }
+        }
+        ws.send(JSON.stringify(api));
+    }
+    
+    function live_chat_request() {
+        var api = {
+            'api':'live_chat/request',
+            'parms':{
+                'user_id':user_id,
+                'camgirl_id':11
             }
         }
         ws.send(JSON.stringify(api));
